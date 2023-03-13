@@ -8,31 +8,15 @@ const questions = [
     message: "What do you wanna do?".magenta,
     choices: [
       {
-        value: "1",
-        name: `${"1.".magenta} Create task`,
+        value: 1,
+        name: `${"1.".magenta} Find city`,
       },
       {
-        value: "2",
-        name: `${"2.".magenta} Show tasks`,
+        value: 2,
+        name: `${"2.".magenta} History`,
       },
       {
-        value: "3",
-        name: `${"3.".magenta} Show completed tasks`,
-      },
-      {
-        value: "4",
-        name: `${"4.".magenta} Show pending tasks`,
-      },
-      {
-        value: "5",
-        name: `${"5.".magenta} Complete tasks`,
-      },
-      {
-        value: "6",
-        name: `${"6.".magenta} Delete task`,
-      },
-      {
-        value: "0",
+        value: 3,
         name: `${"0.".magenta} Exit`,
       },
     ],
