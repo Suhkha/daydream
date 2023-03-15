@@ -28,17 +28,23 @@ const main = async () => {
 
         //Select the place
         const id = await displayPlaces(places);
-        console.log({ id });
+        const selectedPlace = places.find((p) => p.id === id);
+
         //Weather
+        const lat = selectedPlace.lat;
+        const lon = selectedPlace.lon;
+
+        const weather = await searches.weatherPlace(lat, lon);
 
         //Show results
         console.log("Information: \n".green);
-        console.log("Place: ");
-        console.log("Lt: ");
-        console.log("Ln: ");
-        console.log("Temperature: ");
-        console.log("Min: ");
-        console.log("Max: ");
+        console.log("Place:", selectedPlace.name);
+        console.log("Lt:", lat);
+        console.log("Ln:", lon);
+        console.log("Temperature:", weather.temp);
+        console.log("Min:", weather.min);
+        console.log("Max:", weather.max);
+        console.log("Description:", weather.desc);
         break;
 
       case 2:
