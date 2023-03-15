@@ -4,6 +4,7 @@ const {
   readInput,
   inquirerMenu,
   inquirerPause,
+  displayPlaces,
 } = require("./helpers/inquirer");
 const Searches = require("./models/searches");
 
@@ -20,18 +21,19 @@ const main = async () => {
     switch (option) {
       case 1:
         //Get message
-        const place = await readInput("City to search: ");
+        const place = await readInput("Place to search: ");
 
         //Search places
-        await searches.city(place);
+        const places = await searches.place(place);
 
         //Select the place
-
+        const id = await displayPlaces(places);
+        console.log({ id });
         //Weather
 
         //Show results
         console.log("Information: \n".green);
-        console.log("City: ");
+        console.log("Place: ");
         console.log("Lt: ");
         console.log("Ln: ");
         console.log("Temperature: ");

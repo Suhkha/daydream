@@ -9,7 +9,7 @@ const questions = [
     choices: [
       {
         value: 1,
-        name: `${"1.".magenta} Find city`,
+        name: `${"1.".magenta} Find place`,
       },
       {
         value: 2,
@@ -62,13 +62,13 @@ const readInput = async (message) => {
   return description;
 };
 
-const tasksToDelete = async (tasks = []) => {
-  const choices = tasks.map((task, i) => {
+const displayPlaces = async (places = []) => {
+  const choices = places.map((place, i) => {
     const index = `${i + 1}`.green;
 
     return {
-      value: task.id,
-      name: `${index} ${task.description}`,
+      value: place.id,
+      name: `${index} ${place.name}`,
     };
   });
 
@@ -81,7 +81,7 @@ const tasksToDelete = async (tasks = []) => {
     {
       type: "list",
       name: "id",
-      message: "Delete",
+      message: "Choose place",
       choices,
     },
   ];
@@ -129,7 +129,7 @@ module.exports = {
   inquirerMenu,
   inquirerPause,
   readInput,
-  tasksToDelete,
+  displayPlaces,
   confirm,
   checklistOfTasks,
 };
