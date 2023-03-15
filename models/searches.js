@@ -1,10 +1,12 @@
+const fs = require("fs");
 const axios = require("axios");
 
 class Searches {
-  history = ["Corea", "Inglaterra", "Islandia", "Canada"];
+  history = [];
+  dbPath = "./db/cities.json";
 
   constructor() {
-    //TODO read from database
+    this.readDB();
   }
 
   get paramsMapbox() {
@@ -19,6 +21,15 @@ class Searches {
       appid: process.env.OPENWEATHER_KEY,
       units: "metric",
     };
+  }
+
+  get capitalizeHistoryPlaceName() {
+    return this.history.map((place) => {
+      let words = place.split(" ");
+      words = words.map((word) => word[0].toUpperCase() + word.substring(1));
+
+      return words.join(" ");
+    });
   }
 
   async place(place = "") {
@@ -61,6 +72,32 @@ class Searches {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  addHistory(place = "") {
+    if (this.history.includes(place.toLocaleLowerCase())) {
+      return;
+    }
+
+    this.history.unshift(place);
+    this.saveDB();
+  }
+
+  saveDB() {
+    const payload = {
+      history: this.history,
+    };
+
+    fs.writeFileSync(this.dbPath, JSON.stringify(payload));
+  }
+
+  readDB() {
+    if (!fs.existsSync(this.dbPath)) return;
+
+    const info = fs.readFileSync(this.dbPath, { encoding: "utf-8" });
+    const data = JSON.parse(info);
+
+    this.history = data.history;
   }
 }
 

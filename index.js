@@ -28,7 +28,12 @@ const main = async () => {
 
         //Select the place
         const id = await displayPlaces(places);
+        if (id === 0) continue;
+
         const selectedPlace = places.find((p) => p.id === id);
+
+        //Sava data
+        searches.addHistory(selectedPlace.name);
 
         //Weather
         const lat = selectedPlace.lat;
@@ -48,7 +53,10 @@ const main = async () => {
         break;
 
       case 2:
-        console.log("You choose option 2");
+        searches.capitalizeHistoryPlaceName.forEach((place, i) => {
+          const idx = `${i + 1}.`.green;
+          console.log(`${idx} ${place}`);
+        });
         break;
     }
 
