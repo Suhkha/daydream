@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 class Searches {
   history = ["Corea", "Inglaterra", "Islandia", "Canada"];
 
@@ -7,9 +9,13 @@ class Searches {
 
   async city(city = "") {
     //HTTP request
-    console.log(city);
-
-    return []; // Return all cities
+    //console.log("city", city);
+    try {
+      const resp = await axios.get("https://reqres.in/api/users?page=2");
+      console.log(resp.data);
+    } catch (error) {
+      return [];
+    }
   }
 }
 
