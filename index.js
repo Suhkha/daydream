@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const {
   readInput,
   inquirerMenu,
@@ -19,8 +21,15 @@ const main = async () => {
       case 1:
         //Get message
         const place = await readInput("City to search: ");
-        console.log(place);
 
+        //Search places
+        await searches.city(place);
+
+        //Select the place
+
+        //Weather
+
+        //Show results
         console.log("Information: \n".green);
         console.log("City: ");
         console.log("Lt: ");
