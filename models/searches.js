@@ -7,11 +7,21 @@ class Searches {
     //TODO read from database
   }
 
+  get paramsMapbox() {
+    return {
+      access_token: process.env.MAPBOX_KEY,
+      limit: 5,
+    };
+  }
   async city(city = "") {
     //HTTP request
-    //console.log("city", city);
+
     try {
-      const resp = await axios.get("https://reqres.in/api/users?page=2");
+      const instance = axios.create({
+        baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json`,
+        params: this.paramsMapbox,
+      });
+      const resp = await instance.get();
       console.log(resp.data);
     } catch (error) {
       return [];
