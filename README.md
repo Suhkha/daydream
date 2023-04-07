@@ -1,7 +1,7 @@
 # Daydream
 Weather console application with NodeJS
 
-# Installation
+# Install & run
 `npm install`
 
 `node index`
