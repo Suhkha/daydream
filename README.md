@@ -14,3 +14,5 @@ Weather console application with NodeJS
 
 # Search and obtain results
 
+https://user-images.githubusercontent.com/5197938/230518425-eb0a3518-046b-4683-8ecf-f6ed9d71ef26.mp4
+
